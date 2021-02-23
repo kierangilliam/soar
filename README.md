@@ -28,4 +28,11 @@ While in the docker container, go to `~/src/tutorial` and run
 `jupyter notebook --allow-root --no-browser --ip=0.0.0.0 --NotebookApp.token=''`
 
 
-In your browser navigate to `localhost:8888`.
+In your browser navigate to `127.0.0.1:8888`.
+
+
+### jupyter-notebook vim
+
+Go here: `http://127.0.0.1:8888/tree/tutorial#nbextensions_configurator`. 
+Uncheck `disable configuration...` and then check the vim plugin.
+

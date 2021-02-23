@@ -24,8 +24,17 @@ RUN echo "export SOAR_HOME=~/Soar/out" >> ~/.bashrc
 # Ensure that addition to bashrc is loaded
 SHELL ["/bin/bash","-c"] 
 
-# Install python dependencies
-RUN pip3 install notebook
+# Install jupyter dependencies
+RUN pip3 install notebook jupyter_contrib_nbextensions
+# jupyter extensions setup
+RUN jupyter contrib nbextension install --user
+RUN mkdir -p $(jupyter --data-dir)/nbextensions
+# vim bindings
+RUN git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding
+RUN chmod -R go-w $(jupyter --data-dir)/nbextensions/vim_binding
+# code folding
+RUN jupyter nbextension enable codefolding/main
+
 
 WORKDIR /root
 RUN mkdir src
@@ -36,6 +45,10 @@ RUN echo "export PYTHONPATH=${PYTHONPATH}:~/Soar/out" >> ~/.bashrc
 
 # Expose jupyter notebook port
 EXPOSE 8888
+
+# Dev tools
+# vim bindings in bash
+RUN set -o vi
 
 # Keep container alive
 ENTRYPOINT ["tail", "-f", "/dev/null"]
