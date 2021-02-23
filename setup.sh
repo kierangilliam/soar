@@ -1,8 +1,3 @@
 docker build -t soar .
-docker run --name soar -d soar
-docker exec -t -i soar /bin/bash
+docker run --name soar -v "$(pwd)/src":/root/src -d soar
 
-python3 run_agent.py
-
-
-docker kill soar && docker rm soar
