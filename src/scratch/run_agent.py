@@ -31,9 +31,8 @@ class SimpleConnector(AgentConnector):
         root_id.AddStatusComplete()
 
 
-filename = f'{curdir}/example.config'
 agent = SoarAgent(
-    config_filename=filename,
+    config_filename='example.config',
     root_dir=curdir,
     write_to_stdout=True
 )
