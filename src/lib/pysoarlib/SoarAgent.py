@@ -30,6 +30,9 @@ class SoarAgent():
         agent_source = [filename] (default=None)
             Soar file to source when the agent is created
 
+        agent_raw = [str] (default=None)
+            Soar file contents. Creates a tmp file soar file and uses that filename as the agent_source
+
         smem_source = [filename] (default=None)
             Soar file with smem add commands to source the agent is created
 
@@ -226,8 +229,16 @@ class SoarAgent():
     def _apply_settings(self):
         """ Set up the SoarAgent object by copying settings or filling in default values """
         self.agent_name = self.settings.get("agent_name", "soaragent")
-        self.agent_source = self.settings.get("agent_source", None)
-        self.agent_source = self.root_dir + self.agent_source
+
+        self.agent_raw = self.settings.get("agent_raw", None)
+        if self.agent_raw != None:
+            self.agent_source = f"/tmp/{self.agent_name}.soar"
+            with open(self.agent_source, "w") as f:
+                f.write(self.agent_raw)
+        else:
+            self.agent_source = self.settings.get("agent_source", None)
+            self.agent_source = self.root_dir + self.agent_source
+
         self.smem_source = self.settings.get("smem_source", None)
 
         self.source_output = self.settings.get("source_output", "summary")
@@ -360,7 +371,7 @@ class SoarAgent():
 
     @staticmethod
     def _run_event_handler(eventID, self, agent, phase):
-        print('[DEBUG] Run event handler', eventID)
+        # print('[DEBUG] Run event handler', eventID)
         if eventID == sml.smlEVENT_BEFORE_INPUT_PHASE:
             self._on_input_phase(agent.GetInputLink())
 
