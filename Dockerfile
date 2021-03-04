@@ -24,6 +24,15 @@ RUN echo "export SOAR_HOME=~/Soar/out" >> ~/.bashrc
 # Ensure that addition to bashrc is loaded
 SHELL ["/bin/bash","-c"] 
 
+#### Other python dependencies
+# Maybe remove opencv, may not need
+# RUN apt-get update
+# RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python3-opencv
+
+# PIL image library for visualizations
+RUN python3 -m pip install --upgrade pip 
+RUN python3 -m pip install --upgrade Pillow
+
 # Install jupyter dependencies
 RUN pip3 install notebook jupyter_contrib_nbextensions
 # jupyter extensions setup
@@ -32,6 +41,7 @@ RUN mkdir -p $(jupyter --data-dir)/nbextensions
 # vim bindings
 RUN git clone https://github.com/lambdalisue/jupyter-vim-binding $(jupyter --data-dir)/nbextensions/vim_binding
 RUN chmod -R go-w $(jupyter --data-dir)/nbextensions/vim_binding
+RUN jupyter nbextension enable vim_binding/vim_binding
 # code folding
 RUN jupyter nbextension enable codefolding/main
 
