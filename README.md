@@ -1,3 +1,12 @@
+# Introduction
+
+TODO eaters demo
+
+## What is Soar?
+## What is a cognitive architecture?
+## How is this different than Deep Learning?
+
+
 ### Installation
 
 Download docker [here](https://docs.docker.com/get-docker/).
