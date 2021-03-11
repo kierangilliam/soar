@@ -6,6 +6,16 @@ TODO eaters demo
 ## What is a cognitive architecture?
 ## How is this different than Deep Learning?
 
+## What is this?
+
+This is a quick way to get started with Soar.
+It includes a Dockerfile with Soar, pysoarlib, and jupyter-notebook.
+
+There are tutorials included in the form of notebooks.
+These follow closely the tutorials provided by the [Soar team](https://soar.eecs.umich.edu/downloads/Documentation/SoarTutorial/).
+They have done the heavy-lifting of creating robust content that covers the many facets of Soar.
+The tutorials included in this repo heavily paraphrase the official tutorials, often taking direct quotes where appropriate.
+I aim to hit an audience with a similar background as myself (beginner AI knowledge, any level of programming knowledge, zero knowledge of Soar).
 
 ### Installation
 
