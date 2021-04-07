@@ -4,11 +4,10 @@ FROM ubuntu:18.04
 RUN apt-get update
 RUN apt-get install -y build-essential swig openjdk-8-jdk git software-properties-common
 
-# Setup dev environment
+## Setup dev environment
 RUN apt-get install -y vim 
-RUN echo "set -o vi" >> ~/.bashrc
 
-# Python 3 dependencies
+# Python 3 dependencies for building Soar
 RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN apt-get update
 RUN apt-get install -y python3.8
@@ -20,21 +19,11 @@ RUN git clone --depth 1 https://github.com/SoarGroup/Soar.git
 WORKDIR /root/Soar
 # Build
 RUN python3.8 scons/scons.py all --python=/usr/bin/python3
-RUN echo "export SOAR_HOME=~/Soar/out" >> ~/.bashrc
-# Ensure that addition to bashrc is loaded
-SHELL ["/bin/bash","-c"] 
 
-#### Other python dependencies
-# Maybe remove opencv, may not need
-# RUN apt-get update
-# RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python3-opencv
 
-# PIL image library for visualizations
-RUN python3 -m pip install --upgrade pip 
-RUN python3 -m pip install --upgrade Pillow
-
-# Install jupyter dependencies
-RUN pip3 install notebook jupyter_contrib_nbextensions
+## Install jupyter dependencies
+# RUN pip3 install --force-reinstall --upgrade jupyter
+RUN python3 -m pip install --upgrade notebook jupyter_contrib_nbextensions
 # jupyter extensions setup
 RUN jupyter contrib nbextension install --user
 RUN mkdir -p $(jupyter --data-dir)/nbextensions
@@ -46,19 +35,34 @@ RUN jupyter nbextension enable vim_binding/vim_binding
 RUN jupyter nbextension enable codefolding/main
 
 
+### Other python3 dependencies
+# PIL image library for visualizations in part 3
+RUN python3 -m pip install --upgrade pip 
+RUN python3 -m pip install --upgrade Pillow
+# Tutorial part 4
+RUN python3 -m pip install --upgrade python-socketio
+
+
 WORKDIR /root
 RUN mkdir src
 WORKDIR /root/src
 
+
 # Setup pysoarlib
 RUN echo "export PYTHONPATH=${PYTHONPATH}:~/Soar/out" >> ~/.bashrc
+RUN echo "export SOAR_HOME=~/Soar/out" >> ~/.bashrc
+# Vim bindings in shell
+RUN echo "set -o vi" >> ~/.bashrc
+# Ensure that additions to bashrc is loaded
+SHELL ["/bin/bash","-c"] 
 
-# Expose jupyter notebook port
-EXPOSE 8888
 
-# Dev tools
-# vim bindings in bash
-RUN set -o vi
+## Expose 
+# 8888: jupyter notebook port
+# 8887: tutorial part 4 server
+# 8886: tutorial part 4 client
+EXPOSE 8888 8887 8886
+
 
 # Keep container alive
 ENTRYPOINT ["tail", "-f", "/dev/null"]
