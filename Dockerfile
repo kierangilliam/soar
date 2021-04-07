@@ -39,8 +39,6 @@ RUN jupyter nbextension enable codefolding/main
 # PIL image library for visualizations in part 3
 RUN python3 -m pip install --upgrade pip 
 RUN python3 -m pip install --upgrade Pillow
-# Tutorial part 4
-RUN python3 -m pip install --upgrade python-socketio
 
 
 WORKDIR /root
@@ -59,9 +57,7 @@ SHELL ["/bin/bash","-c"]
 
 ## Expose 
 # 8888: jupyter notebook port
-# 8887: tutorial part 4 server
-# 8886: tutorial part 4 client
-EXPOSE 8888 8887 8886
+EXPOSE 8888 
 
 
 # Keep container alive
