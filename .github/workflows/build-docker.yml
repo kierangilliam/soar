@@ -1,0 +1,25 @@
+name: Build docker image
+
+env:
+  IMAGE: docker.pkg.github.com/kierangilliam/soar/soar-tutorial:latest
+  
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pull image
+        run: docker pull ${{ env.IMAGE }} || true
+          
+      - name: Build image
+        run: docker build --cache-from ${{ env.IMAGE }} --target tutorials -t soar .
+        
+      - name: Push image
+        run: |
+          docker tag soar docker.pkg.github.com/kierangilliam/soar/soar-tutorial
+          docker push docker.pkg.github.com/kierangilliam/soar/soar-tutorial:latest
