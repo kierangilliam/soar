@@ -42,6 +42,7 @@ Stop the Jupyter Notebook process with `control-c`.
 Then type `exit` to leave the container. 
 Finally, kill the container process with `docker rm -f soar-tutorial`.
 
+These are a work in progress.
 Feedback on explanations, grammar, etc, is appreciated.
 
 ### Dev mode
