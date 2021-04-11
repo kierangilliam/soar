@@ -1,8 +1,8 @@
-TODO eaters demo
+![Eaters](https://github.com/kierangilliam/soar/raw/master/src/tutorial/img/3_eaters-demo.gif)
 
-> In development for thirty years, Soar is a general cognitive architecture that integrates knowledge-intensive reasoning, reactive execution, hierarchical reasoning, planning, and learning from experience, with the goal of creating a general computational system that has the same cognitive abilities as humans. In contrast, most AI systems are designed to solve only one type of problem, such as playing chess, searching the Internet, or scheduling aircraft departures. Soar is both a software system for agent development and a theory of what computational structures are necessary to support human-level agents. Over the years, both software system and theory have evolved. This book offers the definitive presentation of Soar from theoretical and practical perspectives, providing comprehensive descriptions of fundamental aspects and new components.
+## What is Soar?
 
-- [MIT Press](https://mitpress.mit.edu/books/soar-cognitive-architecture#:~:text=In%20development%20for%20thirty%20years,same%20cognitive%20abilities%20as%20humans.)
+"In development for thirty years, Soar is a general cognitive architecture that integrates knowledge-intensive reasoning, reactive execution, hierarchical reasoning, planning, and learning from experience, with the goal of creating a general computational system that has the same cognitive abilities as humans. In contrast, most AI systems are designed to solve only one type of problem, such as playing chess, searching the Internet, or scheduling aircraft departures. Soar is both a software system for agent development and a theory of what computational structures are necessary to support human-level agents. Over the years, both software system and theory have evolved. This book offers the definitive presentation of Soar from theoretical and practical perspectives, providing comprehensive descriptions of fundamental aspects and new components." - [MIT Press](https://mitpress.mit.edu/books/soar-cognitive-architecture#:~:text=In%20development%20for%20thirty%20years,same%20cognitive%20abilities%20as%20humans.)
 
 ## What is this repository?
 
