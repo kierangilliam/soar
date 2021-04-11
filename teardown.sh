@@ -1,1 +1,1 @@
-docker kill soar && docker rm soar
+docker rm -f soar
